@@ -4,39 +4,42 @@ import { QuoteFormDialog } from "@/components/QuoteFormDialog"
 
 const pricingTiers = [
   {
-    name: "Базовый",
-    price: "99 900",
+    name: "Старт",
+    price: "от 390",
+    description: "Один сувенир — одно воспоминание",
     features: [
-      "До 5 страниц",
-      "Адаптивный дизайн",
-      "Базовая SEO-оптимизация",
-      "Форма обратной связи",
-      "1 месяц поддержки",
+      "Кружка или подушка с фото",
+      "Печать с вашего фото",
+      "Подарочная упаковка",
+      "Готово за 3-5 дней",
+      "Доставка по России",
     ],
     highlighted: false,
   },
   {
-    name: "Про",
-    price: "249 900",
+    name: "Набор",
+    price: "от 1 490",
+    description: "Идеально для подарка близким",
     features: [
-      "До 15 страниц",
-      "Премиум-дизайн",
-      "Расширенная SEO-оптимизация",
-      "Интеграция CMS",
-      "Функционал e-commerce",
-      "3 месяца поддержки",
+      "3-5 изделий на выбор",
+      "Кружки, подушки, холст",
+      "Единый стиль оформления",
+      "Фирменная упаковка",
+      "Приоритетное изготовление",
+      "Бесплатная консультация",
     ],
     highlighted: true,
   },
   {
-    name: "Индивидуальный",
+    name: "Корпоратив",
     price: "По запросу",
+    description: "Для команд и бизнеса",
     features: [
-      "Неограниченно страниц",
-      "Кастомный функционал",
-      "API-интеграции",
+      "От 10 изделий",
+      "Брендинг и логотип",
+      "Единый дизайн серии",
       "Персональный менеджер",
-      "6 месяцев поддержки",
+      "Оптовые скидки",
     ],
     highlighted: false,
   },
@@ -60,10 +63,10 @@ export function PricingSection() {
             Прозрачные цены
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-balance">
-            Выберите <span className="text-primary">идеальный тариф</span> для вашего проекта
+            Выберите <span className="text-primary">подходящий вариант</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            От стартапов до крупного бизнеса — у нас есть подходящее решение
+            Один подарок или целая серия — у нас есть решение для любого повода
           </p>
         </div>
 
@@ -82,15 +85,15 @@ export function PricingSection() {
                   Популярный
                 </div>
               )}
-              <CardHeader className="text-center pb-8">
+              <CardHeader className="text-center pb-4">
                 <CardTitle className="text-2xl mb-2">{tier.name}</CardTitle>
+                <p className="text-sm text-muted-foreground">{tier.description}</p>
                 <div className="mt-4">
                   <span className="text-4xl font-bold">
                     {tier.price === "По запросу" ? (
                       <span className="text-3xl">{tier.price}</span>
                     ) : (
                       <>
-                        <span className="text-lg font-normal text-muted-foreground">от </span>
                         {tier.price}
                         <span className="text-lg font-normal text-muted-foreground"> ₽</span>
                       </>
@@ -112,7 +115,7 @@ export function PricingSection() {
                   variant={tier.highlighted ? "default" : "outline"}
                   className={`w-full ${tier.highlighted ? "shadow-lg shadow-primary/20" : ""}`}
                 >
-                  {tier.price === "По запросу" ? "Связаться с нами" : "Выбрать тариф"}
+                  {tier.price === "По запросу" ? "Связаться с нами" : "Заказать"}
                 </QuoteFormDialog>
               </CardContent>
             </Card>
@@ -121,8 +124,8 @@ export function PricingSection() {
 
         <div className="mt-12 text-center">
           <p className="text-sm text-muted-foreground">
-            Все тарифы включают <span className="text-primary font-semibold">бесплатную настройку хостинга</span> и{" "}
-            <span className="text-primary font-semibold">SSL-сертификат</span>
+            Все заказы включают <span className="text-primary font-semibold">бесплатную консультацию</span> и{" "}
+            <span className="text-primary font-semibold">предпросмотр макета</span> перед печатью
           </p>
         </div>
       </div>

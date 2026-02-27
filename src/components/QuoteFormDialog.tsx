@@ -57,9 +57,9 @@ export function QuoteFormDialog({ packageName, variant = "default", className, c
       </DialogTrigger>
       <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Запросить расчет</DialogTitle>
+          <DialogTitle>Оформить заказ</DialogTitle>
           <DialogDescription>
-            Заполните форму, и мы свяжемся с вами в ближайшее время для бесплатной консультации.
+            Заполните форму, и мы свяжемся с вами для уточнения деталей и согласования макета.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
@@ -118,10 +118,10 @@ export function QuoteFormDialog({ packageName, variant = "default", className, c
                 <SelectValue placeholder="Выберите тариф" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Базовый">Базовый</SelectItem>
-                <SelectItem value="Про">Про</SelectItem>
-                <SelectItem value="Индивидуальный">Индивидуальный</SelectItem>
-                <SelectItem value="Еще не определился">Еще не определился</SelectItem>
+                <SelectItem value="Старт">Старт (один сувенир)</SelectItem>
+                <SelectItem value="Набор">Набор (3-5 изделий)</SelectItem>
+                <SelectItem value="Корпоратив">Корпоратив (от 10 шт.)</SelectItem>
+                <SelectItem value="Еще не определился">Ещё не определился</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -133,7 +133,7 @@ export function QuoteFormDialog({ packageName, variant = "default", className, c
               required
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              placeholder="Расскажите о проекте, пожеланиях и сроках..."
+              placeholder="Что хотите напечатать? На каком изделии? Для какого повода?"
               rows={4}
             />
           </div>
