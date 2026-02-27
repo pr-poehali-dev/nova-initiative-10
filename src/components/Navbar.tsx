@@ -1,10 +1,14 @@
 import { ThemeToggle } from "@/components/ThemeToggle"
 import { Logo } from "@/components/Logo"
 import { MobileMenu } from "@/components/MobileMenu"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
+import { Button } from "@/components/ui/button"
+import { ChevronDown, MessageCircle } from "lucide-react"
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [contactOpen, setContactOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -12,6 +16,16 @@ export function Navbar() {
     }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setContactOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [])
 
   return (
@@ -42,6 +56,49 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-2">
+            <div className="relative hidden md:block" ref={dropdownRef}>
+              <Button
+                size="sm"
+                className="gap-1"
+                onClick={() => setContactOpen((v) => !v)}
+              >
+                <MessageCircle className="h-4 w-4" />
+                Связаться с нами
+                <ChevronDown className={`h-4 w-4 transition-transform ${contactOpen ? "rotate-180" : ""}`} />
+              </Button>
+
+              {contactOpen && (
+                <div className="absolute right-0 mt-2 w-52 rounded-xl border border-border bg-background/95 backdrop-blur-sm shadow-xl overflow-hidden z-50">
+                  <a
+                    href="https://max.ru/Nadejda_Pamyat_v_kadre"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setContactOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 hover:bg-primary/10 transition-colors"
+                  >
+                    <span className="text-xl">💬</span>
+                    <div>
+                      <p className="text-sm font-semibold">Max</p>
+                      <p className="text-xs text-muted-foreground">Написать в Max</p>
+                    </div>
+                  </a>
+                  <div className="h-px bg-border" />
+                  <a
+                    href="https://whatsapp.com/dl/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setContactOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 hover:bg-primary/10 transition-colors"
+                  >
+                    <span className="text-xl">📱</span>
+                    <div>
+                      <p className="text-sm font-semibold">WhatsApp</p>
+                      <p className="text-xs text-muted-foreground">Написать в WhatsApp</p>
+                    </div>
+                  </a>
+                </div>
+              )}
+            </div>
             <ThemeToggle />
             <MobileMenu />
           </div>

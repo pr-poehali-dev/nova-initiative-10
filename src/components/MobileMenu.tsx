@@ -38,6 +38,29 @@ export function MobileMenu() {
             </a>
           ))}
         </nav>
+        <div className="mt-6 flex flex-col gap-3 px-4">
+          <p className="text-sm text-muted-foreground font-medium">Связаться с нами</p>
+          <a
+            href="https://max.ru/Nadejda_Pamyat_v_kadre"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors"
+          >
+            <span className="text-xl">💬</span>
+            <span className="font-medium text-sm">Написать в Max</span>
+          </a>
+          <a
+            href="https://whatsapp.com/dl/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors"
+          >
+            <span className="text-xl">📱</span>
+            <span className="font-medium text-sm">Написать в WhatsApp</span>
+          </a>
+        </div>
       </SheetContent>
     </Sheet>
   )
